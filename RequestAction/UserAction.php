@@ -3,7 +3,7 @@ session_start();
 
 include ('../db.php');
 
-$db = new DB();
+$Db = new DB();
 $tblName = 'users';
 if(isset($_REQUEST['request_type']) && !empty($_REQUEST['request_type'])){
     if($_REQUEST['request_type'] == 'add'){
@@ -12,7 +12,7 @@ if(isset($_REQUEST['request_type']) && !empty($_REQUEST['request_type'])){
             'email' => $_POST['email'],
             'phone' => $_POST['phone']
         );
-        $insert = $db->insert($tblName,$userData);
+        $insert = $Db->insert($tblName,$userData);
         $statusMsg = $insert?'User data has been inserted successfully.':'Some problem occurred, please try again.';
         $_SESSION['statusMsg'] = $statusMsg;
             header("Location:../index.php");
@@ -24,7 +24,7 @@ if(isset($_REQUEST['request_type']) && !empty($_REQUEST['request_type'])){
                 'phone' => $_POST['phone']
             );
             $condition = array('id' => $_POST['id']);
-            $update = $db->update($tblName,$userData,$condition);
+            $update = $Db->update($tblName,$userData,$condition);
             $statusMsg = $update?'User data has been updated successfully.':'Some problem occurred, please try again.';
             $_SESSION['statusMsg'] = $statusMsg;
             header("Location:../index.php");
@@ -32,7 +32,7 @@ if(isset($_REQUEST['request_type']) && !empty($_REQUEST['request_type'])){
     }elseif($_REQUEST['request_type'] == 'delete'){
         if(!empty($_GET['id'])){
             $condition = array('id' => $_GET['id']);
-            $delete = $db->delete($tblName,$condition);
+            $delete = $Db->delete($tblName,$condition);
             $statusMsg = $delete?'User data has been deleted successfully.':'Some problem occurred, please try again.';
             $_SESSION['statusMsg'] = $statusMsg;
             header("Location:../index.php");
