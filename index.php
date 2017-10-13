@@ -35,8 +35,8 @@ include_once("header.php");
 
 
      <?php
-            $db = new DB();
-            $users = $db->getRows('users',array('order_by'=>'id DESC'));
+            $Db = new DB();
+            $users = $Db->getRows('users',array('order_by'=>'id DESC'));
 
             if(!empty($users)){
                 
